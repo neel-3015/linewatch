@@ -8,6 +8,8 @@ linewatch validates every reading, stores it in SQLite, raises and clears
 alerts in real time, and shows fleet health on a live dashboard. Deploys to
 AWS with one CloudFormation command.
 
+**Live demo:** http://ec2-13-58-215-20.us-east-2.compute.amazonaws.com (AWS EC2, us-east-2, deployed with the CloudFormation template below)
+
 ![dashboard](docs/dashboard.png)
 
 ## What it does
