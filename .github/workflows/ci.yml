@@ -1,0 +1,22 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.9", "3.12"]   # 3.9 = Amazon Linux 2023's system Python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: pytest -q
+  lint-infra:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install cfn-lint
+      - run: cfn-lint deploy/cloudformation.yaml
+      - run: shellcheck deploy/setup.sh
