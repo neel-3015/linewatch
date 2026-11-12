@@ -1,0 +1,20 @@
+[Unit]
+Description=linewatch shop-floor simulator (demo data)
+After=linewatch.service
+Requires=linewatch.service
+
+[Service]
+User=linewatch
+Group=linewatch
+EnvironmentFile=/etc/linewatch.env
+WorkingDirectory=/opt/linewatch/app
+ExecStart=/opt/linewatch/venv/bin/python -m linewatch.simulator --url http://127.0.0.1:8000
+Restart=always
+RestartSec=5
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

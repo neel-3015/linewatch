@@ -1,0 +1,28 @@
+[Unit]
+Description=linewatch telemetry API and dashboard (gunicorn)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=linewatch
+Group=linewatch
+EnvironmentFile=/etc/linewatch.env
+WorkingDirectory=/opt/linewatch/app
+ExecStart=/opt/linewatch/venv/bin/gunicorn --workers 2 --bind 127.0.0.1:8000 --access-logfile - 'linewatch.app:wsgi()'
+Restart=always
+RestartSec=3
+
+# sandboxing
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictSUIDSGID=yes
+ReadWritePaths=/var/lib/linewatch
+
+[Install]
+WantedBy=multi-user.target

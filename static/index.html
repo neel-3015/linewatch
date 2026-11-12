@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>linewatch - shop floor telemetry</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <h1>linewatch</h1>
+      <span class="sub">Shop-floor telemetry</span>
+    </div>
+    <div class="conn" id="conn">connecting...</div>
+  </header>
+
+  <main>
+    <section class="kpis" id="kpis" aria-label="Fleet KPIs"></section>
+
+    <div class="layout">
+      <section aria-label="Machines">
+        <div class="section-head">
+          <h2>Machines</h2>
+          <div class="legend">
+            <span><i class="dot RUNNING"></i>Running</span>
+            <span><i class="dot IDLE"></i>Idle</span>
+            <span><i class="dot MAINTENANCE"></i>Maint.</span>
+            <span><i class="dot FAULT"></i>Fault</span>
+            <span><i class="dot OFFLINE"></i>Offline</span>
+          </div>
+        </div>
+        <div id="lines"></div>
+      </section>
+
+      <aside aria-label="Alerts">
+        <div class="section-head"><h2>Alerts</h2></div>
+        <ol id="alerts" class="alerts"></ol>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
